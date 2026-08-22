@@ -203,8 +203,9 @@ updated `uv.lock`.
 semantic-release is configured to:
 
 - parse conventional commits
+- keep the template in `0.x` versions until stable release is intentional
 - update `project.version` in `pyproject.toml`
-- create tags like `v0.1.1`
+- create tags like `v0.0.2`
 - create GitHub releases
 - publish release assets to the VCS release
 
@@ -212,12 +213,14 @@ Version bumps come from commit messages:
 
 - `fix:` and `perf:` create patch releases
 - `feat:` creates minor releases
-- breaking changes create major releases
+- breaking changes create minor releases while the package is still `0.x`
 - `chore:`, `ci:`, `docs:`, `refactor:`, `style:`, and `test:` do not create
   releases by themselves
 
-For `0.x` versions, `major_on_zero = true` is enabled, so breaking changes are
-handled deliberately even before `1.0.0`.
+This template starts at `0.0.1`. Bug fixes or performance improvements should
+produce `0.0.2`. Feature commits should produce `0.1.0`. CI and README-only
+changes are intentionally non-releasing. When the package is ready for a stable
+public API, set `major_on_zero = true` and make an explicit breaking release.
 
 The workflow uses `GITHUB_TOKEN` from GitHub Actions; no extra token is needed
 for normal repository releases.
