@@ -2374,7 +2374,7 @@ requires-dist = [
     { name = "psycopg", extras = ["binary"], specifier = ">=3.2.0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "sqlalchemy", specifier = ">=2.0.0" },
-    { name = "wood-charts", editable = "../../Wood Tools/wood-charts" },
+    { name = "wood-charts", git = "https://github.com/SpencerRWood/wood-charts.git?rev=main" },
 ]
 
 [package.metadata.requires-dev]
@@ -2561,35 +2561,13 @@ wheels = [
 
 [[package]]
 name = "wood-charts"
-version = "0.2.0"
-source = { editable = "../../Wood Tools/wood-charts" }
+version = "0.3.0"
+source = { git = "https://github.com/SpencerRWood/wood-charts.git?rev=main#4c19fe1460cd16a8a9c163de78ac94ea32e13f6f" }
 dependencies = [
     { name = "kaleido" },
     { name = "pandas" },
     { name = "plotly" },
     { name = "pyyaml" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "kaleido" },
-    { name = "pandas" },
-    { name = "plotly" },
-    { name = "pyyaml" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "coverage", extras = ["toml"] },
-    { name = "gitpython", specifier = ">=3.1.61" },
-    { name = "jupyter" },
-    { name = "matplotlib", specifier = ">=3.11.1" },
-    { name = "mypy" },
-    { name = "pre-commit" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "python-semantic-release" },
-    { name = "ruff" },
 ]
 
 [[package]]
