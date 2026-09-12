@@ -30,6 +30,6 @@ repos:
 
       - id: pytest
         name: Pytest
-        entry: uv run pytest --cov=wood_charts --cov-report=term-missing
+        entry: uv run pytest --cov=synthetic_website_analytics --cov-report=term-missing
         language: system
         pass_filenames: false

@@ -11,6 +11,10 @@ select
     begin_checkout_count,
     purchase_count,
 
+    paid_search_session_count,
+    display_session_count,
+    unattributed_session_count,
+
     product_view_session_count,
     add_to_cart_session_count,
     begin_checkout_session_count,
