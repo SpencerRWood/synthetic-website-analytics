@@ -16,3 +16,16 @@ def test_load_sql_rejects_non_sql_files(tmp_path) -> None:
 
     with pytest.raises(ValueError, match=r"Expected a \.sql file"):
         load_sql(text_file)
+
+
+def test_load_sql_rejects_missing_file(tmp_path) -> None:
+    with pytest.raises(FileNotFoundError):
+        load_sql(tmp_path / "missing.sql")
+
+
+def test_load_sql_rejects_empty_query(tmp_path) -> None:
+    sql_file = tmp_path / "empty.sql"
+    sql_file.write_text("\n", encoding="utf-8")
+
+    with pytest.raises(ValueError, match="SQL file is empty"):
+        load_sql(sql_file)
