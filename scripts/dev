@@ -28,7 +28,7 @@ if ! nc -z 127.0.0.1 "$port" 2>/dev/null; then
   exit 1
 fi
 
-export DBT_HOST=127.0.0.1 DBT_PORT="$port" DBT_USER=wood
+export DBT_HOST=127.0.0.1 DBT_PORT="$port" DBT_USER=dbt_editor
 export DBT_DATABASE=synthetic_website_data
 export INFISICAL_DISABLE_UPDATE_CHECK=true
 unset DBT_PASSWORD DATABASE_URL
@@ -36,5 +36,5 @@ infisical run \
   --domain=https://dev-infisical.woodhost.cloud/api \
   --projectId=7ea10433-2eeb-4c57-95a9-b793dd40c7a4 \
   --env=dev \
-  --path=/synthetic-website-analytics \
+  --path=/synthetic-website-dbt \
   -- uv run "$@"

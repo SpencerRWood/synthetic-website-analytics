@@ -27,10 +27,10 @@ uv sync --group dev
 ```
 
 For local database access, authenticate to Infisical and run Python through the
-repository launcher. It opens a temporary SSH tunnel and expects a valid
-`DBT_PASSWORD` in `Infrastructure Dev/dev:/synthetic-website-analytics`.
-The tunnel closes when the command exits. No local `.env` is required once the
-Infisical credential has been validated.
+repository launcher. It opens a temporary SSH tunnel and reads the existing
+`dbt_editor` credential from `Infrastructure Dev/dev:/synthetic-website-dbt`.
+This role can read the marts used by this repository. The tunnel closes when
+the command exits, and no local `.env` is required.
 
 ```sh
 infisical login --domain=https://dev-infisical.woodhost.cloud/api --method=user --interactive
