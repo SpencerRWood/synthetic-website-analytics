@@ -26,13 +26,24 @@ Install the project and development dependencies:
 uv sync --group dev
 ```
 
-Use a `.env` file for local environment configuration. It is intentionally not
-tracked; copy `.env.example` and replace its placeholder values.
+For local database access, authenticate to Infisical and run Python through the
+repository launcher. It opens a temporary SSH tunnel and expects a valid
+`DBT_PASSWORD` in `Infrastructure Dev/dev:/synthetic-website-analytics`.
+The tunnel closes when the command exits. No local `.env` is required once the
+Infisical credential has been validated.
+
+```sh
+infisical login --domain=https://dev-infisical.woodhost.cloud/api --method=user --interactive
+scripts/dev python -c 'from sqlalchemy import text; from synthetic_website_analytics.data import DatabaseConnector; c = DatabaseConnector.from_env(); conn = c.engine.connect(); print(conn.execute(text("SELECT 1")).scalar()); conn.close(); c.dispose()'
+```
+
+The launcher requires the `swood-server` SSH alias in your local SSH config.
+Set `DBT_TUNNEL_PORT` if port 25435 is already in use.
 
 ## Database queries
 
-Set `DBT_HOST`, `DBT_PORT`, `DBT_USER`, and `DBT_PASSWORD` in `.env`. Set
-`DBT_DATABASE` to target a specific database; it defaults to `postgres`.
+Set `DBT_HOST`, `DBT_PORT`, `DBT_USER`, and `DBT_PASSWORD` in the process
+environment. Set `DBT_DATABASE` to target a specific database; it defaults to `postgres`.
 `DATABASE_URL` is also supported and takes precedence over the individual
 variables.
 
