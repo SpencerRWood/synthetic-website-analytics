@@ -152,3 +152,9 @@ upload_to_vcs_release = true
 
 [tool.uv.sources]
 wood-charts = { git = "https://github.com/SpencerRWood/wood-charts.git", rev = "main" }
+
+[tool.wood.architecture]
+domain = "reference-solutions"
+capability = "analytics-lifecycle"
+kind = "analytics-workspace"
+solution = "synthetic-website-analytics-platform"
