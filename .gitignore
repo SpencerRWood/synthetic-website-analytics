@@ -59,5 +59,3 @@ Thumbs.db
 artifacts/*
 !artifacts/.gitkeep
 output/
-
-AGENTS.md
